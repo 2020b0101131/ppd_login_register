@@ -45,9 +45,9 @@ const Login = ({ setUserState }) => {
     setFormErrors(errors);
     setIsSubmit(true);
     setIsLoading(true); // Show loader when login is clicked
-
+// console.log(process.env.URL)
     if (Object.keys(errors).length === 0) {
-      axios.post("http://localhost:8001/login", user)
+      axios.post(`https://pdd-login-register-server.onrender.com/login`, user)
         .then((res) => {
           if (res.data.message === "Login successfully") {
             setUserState(res.data.user);
@@ -91,7 +91,7 @@ const Login = ({ setUserState }) => {
           value={user.password}
         />
         <p className={basestyle.error}>{formErrors.password}</p>
-        <button className={basestyle.button_common} onClick={loginHandler}>
+        <button style={{cursor:'pointer'}}className={basestyle.button_common} onClick={loginHandler}>
           Login
         </button>
       </form>
